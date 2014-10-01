@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">OMGAndroid</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Brandy is an App Goddess</string>
+    <string name="appGoddess">Brandy is an App Goddess</string>
     <string name="action_settings">Settings</string>
 
 </resources>
