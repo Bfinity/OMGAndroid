@@ -5,13 +5,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MyActivity extends Activity implements View.OnClickListener {
 
     TextView mainTextView;
     Button mainButton;
+    EditText mainEditText;
+    ListView mainListView;
+    ArrayAdapter mArrayAdapter;
+    ArrayList mNameList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +30,13 @@ public class MyActivity extends Activity implements View.OnClickListener {
         mainTextView.setText("JavaRocks Android");
         mainButton = (Button) findViewById(R.id.main_button);
         mainButton.setOnClickListener(this);
+        mainEditText = (EditText) findViewById(R.id.main_edittext);
+        mainListView = (ListView) findViewById(R.id.main_listview);
+
+        mArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mNameList);
+
+        mainListView.setAdapter(mArrayAdapter);
+
     }
 
 
@@ -45,6 +61,8 @@ public class MyActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        mainTextView.setText("Once upon a time in BandCamp...");
+        mainTextView.setText("But " + mainEditText.getText().toString() + " Rocks Harder");
+        mNameList.add(mainEditText.getText().toString());
+        mArrayAdapter.notifyDataSetChanged();
     }
 }
