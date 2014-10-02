@@ -2,9 +2,11 @@ package com.example.bfinerocks.omgandroid2;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,7 +15,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MyActivity extends Activity implements View.OnClickListener {
+public class MyActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     TextView mainTextView;
     Button mainButton;
@@ -36,6 +38,7 @@ public class MyActivity extends Activity implements View.OnClickListener {
         mArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mNameList);
 
         mainListView.setAdapter(mArrayAdapter);
+        mainListView.setOnItemClickListener(this);
 
     }
 
@@ -64,5 +67,12 @@ public class MyActivity extends Activity implements View.OnClickListener {
         mainTextView.setText("But " + mainEditText.getText().toString() + " Rocks Harder");
         mNameList.add(mainEditText.getText().toString());
         mArrayAdapter.notifyDataSetChanged();
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+
+        Log.d("omg android", position + ": " + mNameList.get(position));
     }
 }
